@@ -52,9 +52,38 @@ const verifyJWT = (req, res, next) => {
     });
 }
 
-app.get('/', verifyJWT, (req, res) => {
-    res.status(200).json({ message: 'ok' });
-})
+
+app.post('/add', verifyJWT, (req, res) => {
+    const { num1, num2 } = req.body;
+    const result = num1 + num2;
+    res.json({ result });
+});
+
+app.post('/subtract', verifyJWT, (req, res) => {
+    const { num1, num2 } = req.body;
+    const result = num1 - num2;
+    res.json({ result });
+});
+
+app.post('/multiply', verifyJWT, (req, res) => {
+    const { num1, num2 } = req.body;
+    const result = num1 * num2;
+    res.json({ result });
+});
+
+app.post('/divide', verifyJWT, (req, res) => {
+    const { num1, num2 } = req.body;
+    try {
+        if (num2 === 0) {
+            throw new Error('Cannot divide by zero');
+        }
+        const result = num1 / num2;
+
+        res.json({ result });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
 
 
 app.listen(PORT, () => {
