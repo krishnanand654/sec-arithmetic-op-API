@@ -1,4 +1,4 @@
-# Arithmetic Operation API Documentation
+# Task 1: Arithmetic Operation API
 
 This API allows clients to perform basic arithmetic operations (addition, subtraction, multiplication, division) on two numbers after authenticating themselves using JWT (JSON Web Tokens).
 
